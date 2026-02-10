@@ -7,6 +7,7 @@ Replace all placeholders during the first planning session.
 - Domain: `<PROJECT_DOMAIN>`
 - Goal: `<PRIMARY_BUSINESS_GOAL>`
 - Target users: `<TARGET_USERS>`
+- Brand brief: `.docs/project/brand.md`
 
 ## Technical context
 - Data/API source: `<PRIMARY_API_OR_BACKEND>`

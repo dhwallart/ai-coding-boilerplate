@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "ai:check-specialization": "node scripts/ai/check-specialization.mjs"
+    "ai:check-specialization": "node scripts/ai/check-specialization.mjs",
+    "design:asset": "node scripts/design/generate-asset.mjs",
+    "design:logo": "node scripts/design/generate-asset.mjs --type logo",
+    "design:image": "node scripts/design/generate-asset.mjs --type image"
   },
   "dependencies": {
     "next": "16.1.6",

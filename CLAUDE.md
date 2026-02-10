@@ -11,6 +11,7 @@ For each new prompt, route to the best matching agent in `.claude/agents/`.
 | "api", "server action", "backend", "endpoint" | **Backend Developer** | `.claude/agents/backend-dev.md` |
 | "test", "qa", "bug", "e2e", "unit" | **QA Engineer** | `.claude/agents/qa-engineer.md` |
 | "deploy", "ci", "env", "performance", "build" | **DevOps Engineer** | `.claude/agents/devops.md` |
+| "logo", "branding", "visual", "hero image", "asset design" | **Designer** | `.claude/agents/designer.md` |
 
 Workflow:
 1. Read user prompt.
@@ -40,7 +41,10 @@ If placeholders (e.g. `<PROJECT_DOMAIN>`) are still present, planning is blocked
 - Architecture: `.docs/agent/architecture.md`
 - Practices: `.docs/agent/practices.md`
 - Quality: `.docs/agent/quality.md`
+- Design practices: `.docs/agent/design.md`
 - AI workflow: `.docs/ai/workflow.md`
+- AI design workflow: `.docs/ai/design-workflow.md`
 - First project planning: `.docs/ai/first-project-planning.md`
 - Project specialization: `.docs/project/specialization.md`
+- Project brand brief: `.docs/project/brand.md`
 - AI coding best practices: `.docs/ai/best-practices.md`
