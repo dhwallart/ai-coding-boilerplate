@@ -7,7 +7,10 @@ const type = (args.type || "image").toLowerCase();
 const size = args.size || "1024x1024";
 const name = args.name || "asset";
 const model = process.env.OPENAI_IMAGE_MODEL || "gpt-image-1";
-const outputRoot = process.env.DESIGN_OUTPUT_ROOT || "public/.output";
+const imgRoot = path.resolve(
+  process.cwd(),
+  process.env.DESIGN_OUTPUT_ROOT || "public/assets/img"
+);
 const dryRun = Boolean(args["dry-run"]);
 
 const prompt = resolvePrompt(args);
@@ -16,37 +19,49 @@ if (!prompt) {
   process.exit(1);
 }
 
-const typeDirectoryMap = {
-  logo: "brand/logos",
-  icon: "brand/icons",
-  image: "marketing/images",
-  hero: "marketing/heroes",
-  social: "marketing/social",
+const typeFolderCandidates = {
+  logo: ["logos", "logo", "svg"],
+  icon: ["icons", "icon", "svg"],
+  image: ["images", "image", "b2b", "trust"],
+  hero: ["heroes", "hero", "b2b"],
+  social: ["social", "socials", "b2b"],
 };
 
-const targetDirectory = typeDirectoryMap[type];
-if (!targetDirectory) {
-  console.error(`Unsupported type \"${type}\". Use one of: ${Object.keys(typeDirectoryMap).join(", ")}`);
+const typeFolderDefaults = {
+  logo: "logos",
+  icon: "icons",
+  image: "images",
+  hero: "heroes",
+  social: "social",
+};
+
+if (!typeFolderDefaults[type]) {
+  console.error(
+    `Unsupported type \"${type}\". Use one of: ${Object.keys(typeFolderDefaults).join(", ")}`
+  );
   process.exit(1);
 }
 
+ensureDirectory(imgRoot);
+
+const resolvedFolder = resolveAssetFolder({
+  type,
+  imgRoot,
+  preferredFolder: args.folder,
+  typeFolderCandidates,
+  typeFolderDefaults,
+});
+
 const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
 const baseName = `${timestamp}-${slugify(name)}`;
-const absoluteOutputRoot = path.resolve(process.cwd(), outputRoot);
-const assetDirectory = path.join(absoluteOutputRoot, targetDirectory);
-const promptDirectory = path.join(absoluteOutputRoot, "_meta", "prompts");
-const manifestDirectory = path.join(absoluteOutputRoot, "_meta", "manifests");
-
-ensureDirectory(assetDirectory);
-ensureDirectory(promptDirectory);
-ensureDirectory(manifestDirectory);
-
+const assetDirectory = path.join(imgRoot, resolvedFolder);
 const imagePath = path.join(assetDirectory, `${baseName}.png`);
-const promptPath = path.join(promptDirectory, `${baseName}.txt`);
-const manifestPath = path.join(manifestDirectory, `${baseName}.json`);
+const promptPath = path.join(assetDirectory, `${baseName}.prompt.txt`);
+const manifestPath = path.join(assetDirectory, `${baseName}.manifest.json`);
 
 let imageBuffer;
 if (dryRun) {
+  // 1x1 PNG placeholder for pipeline checks without API calls.
   imageBuffer = Buffer.from(
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X3f0AAAAASUVORK5CYII=",
     "base64"
@@ -71,19 +86,22 @@ const manifest = {
   size,
   name,
   dryRun,
+  folder: resolvedFolder,
   prompt,
   output: {
     image: toPosixRelative(process.cwd(), imagePath),
     prompt: toPosixRelative(process.cwd(), promptPath),
+    manifest: toPosixRelative(process.cwd(), manifestPath),
   },
 };
 
 fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
-console.log("Design asset generated.");
-console.log(`- Image: ${manifest.output.image}`);
-console.log(`- Prompt: ${manifest.output.prompt}`);
-console.log(`- Manifest: ${toPosixRelative(process.cwd(), manifestPath)}`);
+process.stdout.write("Design asset generated.\n");
+process.stdout.write(`- Folder: public/assets/img/${resolvedFolder}\n`);
+process.stdout.write(`- Image: ${manifest.output.image}\n`);
+process.stdout.write(`- Prompt: ${manifest.output.prompt}\n`);
+process.stdout.write(`- Manifest: ${manifest.output.manifest}\n`);
 
 async function generateImageBuffer({ model, prompt, size, apiKey }) {
   const response = await fetch("https://api.openai.com/v1/images/generations", {
@@ -141,6 +159,46 @@ function resolvePrompt(parsedArgs) {
   return "";
 }
 
+function resolveAssetFolder({
+  type,
+  imgRoot,
+  preferredFolder,
+  typeFolderCandidates,
+  typeFolderDefaults,
+}) {
+  if (preferredFolder) {
+    const folder = sanitizeSingleLevelFolder(preferredFolder);
+    const folderPath = path.join(imgRoot, folder);
+    ensureDirectory(folderPath);
+    return folder;
+  }
+
+  const candidates = typeFolderCandidates[type] || [];
+  for (const candidate of candidates) {
+    const folder = sanitizeSingleLevelFolder(candidate);
+    const folderPath = path.join(imgRoot, folder);
+    if (fs.existsSync(folderPath) && fs.statSync(folderPath).isDirectory()) {
+      return folder;
+    }
+  }
+
+  const fallbackFolder = sanitizeSingleLevelFolder(typeFolderDefaults[type]);
+  ensureDirectory(path.join(imgRoot, fallbackFolder));
+  return fallbackFolder;
+}
+
+function sanitizeSingleLevelFolder(value) {
+  const normalized = String(value).trim().replace(/\\/g, "/");
+  if (!normalized || normalized.includes("/")) {
+    console.error(
+      `Invalid folder \"${value}\". Use a single folder name like \"logos\".`
+    );
+    process.exit(1);
+  }
+
+  return slugify(normalized);
+}
+
 function ensureDirectory(dirPath) {
   fs.mkdirSync(dirPath, { recursive: true });
 }
@@ -148,7 +206,7 @@ function ensureDirectory(dirPath) {
 function slugify(value) {
   return String(value)
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/[^a-z0-9_-]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 80) || "asset";
 }

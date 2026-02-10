@@ -19,5 +19,5 @@
 ## Artifacts
 - Feature specs in `.features/`
 - Design notes in feature spec or `.docs/`
-- Generated design assets in `public/.output/`
+- Generated design assets in `public/assets/img/<folder>/`
 - QA report in feature spec or dedicated report file

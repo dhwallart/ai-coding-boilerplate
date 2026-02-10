@@ -45,7 +45,7 @@ Guide: `.docs/ai/first-project-planning.md`.
 │   └── project/                     # Specialization + brand placeholders
 ├── .features/                       # Feature specs
 ├── .github/workflows/ci.yml         # Minimal CI pipeline
-├── public/.output/                  # Generated design assets + metadata
+├── public/assets/img/               # Generated design assets (one-level folders)
 └── src/                             # Next.js application code
 ```
 
@@ -57,16 +57,13 @@ Guide: `.docs/ai/first-project-planning.md`.
 - `npm run build` - Production build
 - `npm run start` - Start production server
 - `npm run ai:check-specialization` - Fail if placeholders still exist in specialization doc
-- `npm run design:logo -- --prompt \"...\" --name logo-v1` - Generate logo into `public/.output/brand/logos`
-- `npm run design:image -- --type hero --prompt \"...\" --name hero-v1` - Generate image into a typed folder
+- `npm run design:logo -- --prompt \"...\" --name logo-v1` - Generate logo into matching folder under `public/assets/img`
+- `npm run design:image -- --type hero --prompt \"...\" --name hero-v1` - Generate image into matching folder under `public/assets/img`
 - `npm run design:asset -- --prompt \"...\" --name test-v1 --dry-run` - Generate test placeholder without API key
 
 ## Design Output Structure
 
-- `public/.output/brand/logos/`
-- `public/.output/brand/icons/`
-- `public/.output/marketing/images/`
-- `public/.output/marketing/heroes/`
-- `public/.output/marketing/social/`
-- `public/.output/_meta/prompts/`
-- `public/.output/_meta/manifests/`
+- Base path: `public/assets/img/`
+- Use existing folders first, for example `svg`, `b2b`, or project-specific folders.
+- If needed, create only one subfolder level: `public/assets/img/<folder>/`
+- Prompt and manifest are saved as sidecar files next to each image (`*.prompt.txt`, `*.manifest.json`).

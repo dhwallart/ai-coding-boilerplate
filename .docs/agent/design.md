@@ -8,9 +8,10 @@ Provide a repeatable workflow for visual direction and AI-generated assets.
 - Brand brief from `.docs/project/brand.md`
 
 ## Generation rules
-- Generate only into `public/.output/`.
-- Keep logical folders by asset type (logo, hero, social, icon).
-- Keep prompt and manifest files for each generated image.
+- Generate only into `public/assets/img/`.
+- Prefer existing folders in `public/assets/img/`.
+- Create at most one new subfolder if needed: `public/assets/img/<folder>`.
+- Keep prompt and manifest as sidecar files next to each image.
 
 ## Prompt quality
 - Mention style, composition, mood, color direction, and use case.
