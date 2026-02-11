@@ -6,12 +6,10 @@ This is a starter project for building a product with an AI assistant.
 
 1. Tell the agent: `Start`
 2. Answer the questions.
-3. Run these commands:
+3. Run this command:
 
 ```bash
-npm install
-npm run ai:check-specialization
-npm run dev
+npm run ai:start
 ```
 
 Open `http://localhost:3000`.
