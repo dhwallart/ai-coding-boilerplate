@@ -17,9 +17,21 @@ Open `http://localhost:3000`.
 
 If you plan to generate design assets, copy `.env.example` to `.env` and set `OPENAI_API_KEY`.
 
+## Guided Setup (Start Prompt)
+
+Recommended agent prompt: `Start`
+
+If you prefer a local guided setup instead of manual edits:
+
+```bash
+npm run ai:specify
+```
+
+This will ask questions and fill `.docs/project/specialization.md` (and optionally `.docs/project/brand.md`).
+
 ## First 10 Minutes
 
-1. Fill project context: `.docs/project/specialization.md`.
+1. Run `npm run ai:specify` or fill `.docs/project/specialization.md`.
 2. Validate placeholders: `npm run ai:check-specialization`.
 3. If design is in scope, fill `.docs/project/brand.md`.
 4. Create your first feature spec in `.features/` (see `example.feature.md`).
@@ -72,6 +84,7 @@ Quality
 - `npm run typecheck` - Run TypeScript type checks
 
 AI and Design
+- `npm run ai:specify` - Guided prompts to fill `.docs/project/specialization.md`
 - `npm run ai:check-specialization` - Fail if placeholders still exist in specialization doc
 - `npm run design:logo -- --prompt \"...\" --name logo-v1` - Generate logo into matching folder under `public/assets/img` (requires `OPENAI_API_KEY`)
 - `npm run design:image -- --type hero --prompt \"...\" --name hero-v1` - Generate image into matching folder under `public/assets/img` (requires `OPENAI_API_KEY`)

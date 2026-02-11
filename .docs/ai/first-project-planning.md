@@ -5,7 +5,7 @@ Goal: replace generic placeholders with project-specific context once, at projec
 Owner: first planning agent (normally Requirements Engineer).
 
 ## Steps
-1. Open `.docs/project/specialization.md`.
+1. Run `npm run ai:specify` or open `.docs/project/specialization.md`.
 2. Replace every `<PLACEHOLDER>` with concrete values.
 3. Add or remove sections to match the domain.
 4. Run `npm run ai:check-specialization`.
