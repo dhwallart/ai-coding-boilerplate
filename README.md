@@ -2,6 +2,14 @@
 
 This is a starter project for building a product with an AI assistant.
 
+## Requirements
+
+You need Node.js (includes npm). Download here:
+
+```
+https://nodejs.org/en/download/
+```
+
 ## The Simple Way to Start
 
 1. Tell the agent: `Start`
