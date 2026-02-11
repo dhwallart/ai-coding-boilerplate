@@ -24,6 +24,12 @@ npm run ai:specify
 
 This asks the same questions and fills the project details for you.
 
+After that, you can run everything with one command:
+
+```bash
+npm run ai:start
+```
+
 ## What You Will Edit (One Time)
 
 - `.docs/project/specialization.md`  
