@@ -64,6 +64,7 @@ Guide: `.docs/ai/first-project-planning.md`.
 ## Design Output Structure
 
 - Base path: `public/assets/img/`
+- Do not create root folders like `.output` or `generated`.
 - Use existing folders first, for example `svg`, `b2b`, or project-specific folders.
 - If needed, create only one subfolder level: `public/assets/img/<folder>/`
 - Prompt and manifest are saved as sidecar files next to each image (`*.prompt.txt`, `*.manifest.json`).
