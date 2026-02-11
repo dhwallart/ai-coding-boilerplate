@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline/promises";
+import { spawn, spawnSync } from "node:child_process";
 import { stdin as input, stdout as output } from "node:process";
 
 const root = path.resolve(".");
@@ -37,6 +38,15 @@ const replacePlaceholder = (content, placeholder, value) => {
   if (!content.includes(token)) return content;
   return content.split(token).join(value);
 };
+
+const runCommand = (cmd, args) =>
+  new Promise((resolve, reject) => {
+    const child = spawn(cmd, args, { stdio: "inherit" });
+    child.on("close", (code) => {
+      if (code === 0) resolve();
+      else reject(new Error(`${cmd} ${args.join(" ")} failed with code ${code}`));
+    });
+  });
 
 const run = async () => {
   console.log("\nProject specialization setup\n");
@@ -99,11 +109,69 @@ const run = async () => {
     fs.writeFileSync(brandPath, brand, "utf8");
   }
 
+  {
+    const skipDirs = new Set([
+      ".git",
+      "node_modules",
+      ".next",
+      "dist",
+      "build",
+      "out",
+      "coverage",
+      "public/assets/img",
+    ]);
+
+    const replaceInFile = (filePath) => {
+      try {
+        const content = fs.readFileSync(filePath, "utf8");
+        if (!content.includes("AI Coding Boilerplate")) return;
+        const updated = content
+          .split("AI Coding Boilerplate")
+          .join(answers.PROJECT_NAME);
+        fs.writeFileSync(filePath, updated, "utf8");
+      } catch {
+        // Ignore non-text or unreadable files.
+      }
+    };
+
+    const walk = (dir) => {
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          if (skipDirs.has(entry.name)) continue;
+          const relPath = path.relative(root, fullPath).replace(/\\/g, "/");
+          if (relPath === "public/assets/img" || relPath.startsWith("public/assets/img/")) {
+            continue;
+          }
+          walk(fullPath);
+        } else if (entry.isFile()) {
+          replaceInFile(fullPath);
+        }
+      }
+    };
+
+    walk(root);
+
+    const gitDir = path.join(root, ".git");
+    if (fs.existsSync(gitDir)) {
+      fs.rmSync(gitDir, { recursive: true, force: true });
+    }
+
+    const hasGit = spawnSync("git", ["--version"], { stdio: "ignore" }).status === 0;
+    if (hasGit) {
+      await runCommand("git", ["init"]);
+    } else {
+      console.log("\nGit not found. Skipping git init.");
+    }
+  }
+
   console.log("\nDone.");
   console.log("- Updated .docs/project/specialization.md");
   if (fillBrand) console.log("- Updated .docs/project/brand.md");
   console.log("\nNext steps:");
   console.log("- npm run ai:check-specialization");
+  console.log("- npm run ai:start");
   console.log("- Add first spec in .features/");
 
   rl.close();

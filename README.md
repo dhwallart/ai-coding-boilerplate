@@ -36,6 +36,9 @@ After that, you can run everything with one command:
 npm run ai:start
 ```
 
+During setup, it replaces `AI Coding Boilerplate` with your project name
+and reinitializes git for a fresh repository (if git is installed).
+
 ## What You Will Edit (One Time)
 
 - `.docs/project/specialization.md`  

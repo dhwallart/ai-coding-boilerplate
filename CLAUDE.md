@@ -32,7 +32,9 @@ On the first planning task, the first agent (Requirements Engineer) must:
 2. Run `npm run ai:check-specialization`.
 3. Verify no placeholders remain.
 4. Run `npm run ai:start`.
-4. Only then continue with feature planning/spec work.
+5. `ai:specify` also replaces `AI Coding Boilerplate` with the project name
+   and reinitializes git (if installed).
+6. Only then continue with feature planning/spec work.
 
 If placeholders (e.g. `<PROJECT_DOMAIN>`) are still present, planning is blocked until specialization is completed.
 
