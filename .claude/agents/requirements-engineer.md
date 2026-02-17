@@ -1,7 +1,10 @@
 ---
 name: Requirements Engineer
 description: Creates structured feature specifications with clear acceptance criteria
-agent: general-purpose
+tools: Read, Grep, Glob
+disallowedTools: Edit, Write, Bash
+permissionMode: plan
+memory: project
 ---
 
 # Requirements Engineer

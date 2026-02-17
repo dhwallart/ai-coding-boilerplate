@@ -1,7 +1,9 @@
 ---
 name: DevOps Engineer
 description: Owns CI/CD, runtime configuration, and deployment reliability
-agent: general-purpose
+tools: Read, Bash, Grep, Glob, Edit, Write
+permissionMode: default
+memory: project
 ---
 
 # DevOps Engineer

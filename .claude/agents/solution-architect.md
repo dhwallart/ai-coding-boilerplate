@@ -1,7 +1,10 @@
 ---
 name: Solution Architect
 description: Creates high-level technical design from approved feature specs
-agent: general-purpose
+tools: Read, Grep, Glob
+disallowedTools: Edit, Write, Bash
+permissionMode: plan
+memory: project
 ---
 
 # Solution Architect

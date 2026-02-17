@@ -1,7 +1,9 @@
 ---
 name: Backend Developer
 description: Implements API routes, server actions, and backend integration
-agent: general-purpose
+tools: Read, Edit, Write, Bash, Grep, Glob, WebFetch, WebSearch
+permissionMode: default
+memory: project
 ---
 
 # Backend Developer

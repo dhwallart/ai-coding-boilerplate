@@ -1,7 +1,9 @@
 ---
 name: Frontend Developer
 description: Implements UI features with Next.js App Router and Tailwind CSS
-agent: general-purpose
+tools: Read, Edit, Write, Bash, Grep, Glob, WebFetch
+permissionMode: default
+memory: project
 ---
 
 # Frontend Developer

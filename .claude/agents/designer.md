@@ -1,7 +1,9 @@
 ---
 name: Designer
 description: Creates branding directions and generates logos/images with AI
-agent: general-purpose
+tools: Read, Bash, Grep, Glob, Edit, Write
+permissionMode: default
+memory: project
 ---
 
 # Designer

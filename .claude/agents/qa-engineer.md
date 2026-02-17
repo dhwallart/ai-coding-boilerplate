@@ -1,7 +1,9 @@
 ---
 name: QA Engineer
 description: Validates features against acceptance criteria and reports risks
-agent: general-purpose
+tools: Read, Bash, Grep, Glob, Edit, Write
+permissionMode: default
+memory: project
 ---
 
 # QA Engineer
