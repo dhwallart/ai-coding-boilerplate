@@ -109,7 +109,8 @@ Then update `package.json`:
 
 1. Run: `npm run ai:check-specialization`
 2. If successful: confirm to the user that the project is ready.
-3. Run `npm run dev` in the background.
+3. Run `npm install` to install/update all dependencies.
+4. Run `npm run dev` in the background.
 4. Wait ~3 seconds, then detect the actual port Next.js chose:
    ```bash
    ss -tlnp 2>/dev/null | grep -oP '(?<=:)\d+' | grep -E '^300[0-9]$' | head -1

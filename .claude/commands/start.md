@@ -111,7 +111,8 @@ Then update `package.json`:
 
 1. Run: `npm run ai:check-specialization`
 2. If successful: inform the user that the project is set up.
-3. Run `npm run dev` in the background (use Bash with `run_in_background: true`).
+3. Run `npm install` to install/update all dependencies.
+4. Run `npm run dev` in the background (use Bash with `run_in_background: true`).
 4. Wait ~3 seconds, then detect the actual port Next.js chose:
    ```bash
    # Next.js auto-selects the next free port (3000, 3001, ...)
