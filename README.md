@@ -1,20 +1,16 @@
 # AI Coding Boilerplate
 
-This is a starter project for building a product with an AI assistant.
+A starter project for building a product with an AI assistant.
 
 ## Requirements
 
-You need Node.js (includes npm). Download here:
+Node.js (includes npm) — download at https://nodejs.org/en/download/
 
-```
-https://nodejs.org/en/download/
-```
-
-## The Simple Way to Start
+## Getting Started
 
 1. Tell the agent: `Start`
 2. Answer the questions.
-3. Run this command:
+3. Run:
 
 ```bash
 npm run ai:start
@@ -22,52 +18,27 @@ npm run ai:start
 
 Open `http://localhost:3000`.
 
-## If You Prefer a Guided Setup in the Terminal
+> Prefer the terminal? Run `npm run ai:specify` instead of telling the agent `Start`.
 
-```bash
-npm run ai:specify
-```
+## What Gets Filled In (One Time)
 
-This asks the same questions and fills the project details for you.
+- `.docs/project/specialization.md` — your project description (the agent fills this)
+- `.features/` — feature specs live here (see `example.feature.md`)
 
-After that, you can run everything with one command:
+Optional, only if you want brand or design work:
 
-```bash
-npm run ai:start
-```
+- `.docs/project/brand.md` — your visual/brand brief
 
-During setup, it replaces `AI Coding Boilerplate` with your project name
-and reinitializes git for a fresh repository (if git is installed).
-
-## What You Will Edit (One Time)
-
-- `.docs/project/specialization.md`  
-  This is your project description. The agent fills it.
-
-Optional (only if you want a brand or design work):
-
-- `.docs/project/brand.md`  
-  This is the visual/brand brief.
-
-## If You Want Design Assets (Optional)
-
-Set up your API key:
+## Design Assets (Optional)
 
 1. Copy `.env.example` to `.env`
-2. Add `OPENAI_API_KEY`
-
-Example command:
+2. Add your `OPENAI_API_KEY`
 
 ```bash
 npm run design:logo -- --prompt "Minimal geometric logo" --name logo-v1
 ```
 
 Design files are saved in `public/assets/img/`.
-
-## Where Things Go
-
-- Feature specs live in `.features/` (see `example.feature.md`)
-- Agent instructions are in `AGENT.md` and `CLAUDE.md`
 
 ## Troubleshooting
 

@@ -27,9 +27,11 @@ If placeholders such as `<PROJECT_DOMAIN>` still exist, complete specialization 
 2. If request is planning and placeholders exist, ask for missing project context and update `.docs/project/specialization.md` first.
 3. Run `npm run ai:check-specialization`.
 4. Verify specialization is complete (no `<...>` placeholders remain).
-5. Ask missing scope questions for the feature if needed.
+5. If scope questions remain, use `AskUserQuestion` (up to 4 questions per call) — do NOT ask one by one as text. Typical questions: target user, core action, success criteria, edge cases.
 6. Write feature spec to `.features/<feature-name>.md`.
 7. Ask for approval and propose handoff to Solution Architect.
+
+> Always prefer `AskUserQuestion` over sequential text questions when clarification is needed.
 
 ## Planning gate
 - During first project planning, do not create feature specs before specialization is completed.

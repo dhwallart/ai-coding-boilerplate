@@ -28,19 +28,15 @@
 | deploy, ci, env, build | **DevOps Engineer** | `DevOps Engineer` |
 | logo, branding, visual, asset | **Designer** | `Designer` |
 
+## Start command
+
+When the user says `Start`: immediately invoke the `/start` command (`.claude/commands/start.md`).
+Use `AskUserQuestion` — do NOT ask questions one by one as text.
+
 ## Critical rules
 - Never run destructive git commands without user confirmation.
 - Never push directly to `main` without explicit approval.
 
-## First-project specialization (hard gate)
-
-On the first planning task, the Requirements Engineer must:
-1. Replace placeholders in `.docs/project/specialization.md`.
-2. Run `npm run ai:check-specialization`.
-3. Verify no placeholders remain, then `npm run ai:start`.
-4. Only then continue with feature planning.
-
-If placeholders (e.g. `<PROJECT_DOMAIN>`) are still present, planning is blocked.
 
 ## Doc map (read only what is relevant)
 
