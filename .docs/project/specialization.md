@@ -1,32 +1,21 @@
 # Project Specialization
 
-Replace all placeholders during the first planning session.
+Replace the three placeholders below during the Start flow.
 
 ## Product context
 - Project name: `<PROJECT_NAME>`
-- Domain: `<PROJECT_DOMAIN>`
-- Goal: `<PRIMARY_BUSINESS_GOAL>`
+- Goal: `<PRIMARY_GOAL>`
 - Target users: `<TARGET_USERS>`
 - Brand brief: `.docs/project/brand.md`
 
-## Technical context
-- Data/API source: `<PRIMARY_API_OR_BACKEND>`
-- Authentication model: `<AUTH_MODEL>`
-- Deployment target: `<DEPLOYMENT_TARGET>`
-- Environment strategy: `<ENV_STRATEGY>`
+## Technical context (defaults — adjust when a feature requires it)
+- Stack: Next.js 16, React 19, Tailwind CSS 4, TypeScript
+- Deployment: Vercel
+- Authentication: None initially — add when a feature requires it
+- Backend: Next.js Server Actions — add a database when needed
 
-## Functional priorities
-- Core entities: `<CORE_ENTITIES>`
-- Core flows: `<CORE_USER_FLOWS>`
-- Non-goals (initial): `<NON_GOALS>`
-
-## Quality and operations
-- Performance targets: `<PERFORMANCE_TARGETS>`
-- Security constraints: `<SECURITY_REQUIREMENTS>`
-- QA scope: `<QA_SCOPE>`
-- Release policy: `<RELEASE_POLICY>`
-
-## Conventions
-- Naming conventions: `<NAMING_CONVENTIONS>`
-- Branch strategy: `<BRANCH_STRATEGY>`
-- Commit rules: `<COMMIT_RULES>`
+## Conventions (defaults)
+- Components: PascalCase in `src/components/`
+- Files: kebab-case
+- Branches: feature branches → PR → main
+- Commits: Conventional Commits (`feat:`, `fix:`, `chore:`)

@@ -1,29 +1,19 @@
 # Brand Brief
 
-Replace placeholders when design work starts.
-
 ## Identity
 - Brand name: `<BRAND_NAME>`
-- Brand promise: `<BRAND_PROMISE>`
-- Brand personality: `<BRAND_PERSONALITY>`
+- Brand personality: Modern, clean, approachable
 
 ## Visual direction
-- Color direction: `<COLOR_DIRECTION>`
-- Typography direction: `<TYPOGRAPHY_DIRECTION>`
-- Shape language: `<SHAPE_LANGUAGE>`
-- Do-not-use rules: `<VISUAL_DONTs>`
+- Color direction: Blues & greys — calm, trustworthy (adjust to match the project goal)
+- Typography: Clean sans-serif, good readability
+- Shape language: Rounded corners, minimal decoration
 
 ## Logo guidance
-- Preferred logo style: `<LOGO_STYLE>`
-- Symbol ideas: `<LOGO_SYMBOL_IDEAS>`
-- Text treatment: `<LOGO_TEXT_TREATMENT>`
+- Style: Minimal wordmark or simple icon + text
+- Format: SVG preferred
 
 ## Image guidance
-- Hero image style: `<HERO_STYLE>`
-- Social image style: `<SOCIAL_STYLE>`
-- Background direction: `<BACKGROUND_DIRECTION>`
-
-## Technical output
-- Preferred output formats: `<OUTPUT_FORMATS>`
-- Preferred dimensions: `<OUTPUT_DIMENSIONS>`
-- Accessibility constraints: `<ACCESSIBILITY_CONSTRAINTS>`
+- Style: Clean, light backgrounds with focused subject
+- Social: 1200×630 px, brand-color background
+- Accessibility: Minimum 4.5:1 contrast ratio
