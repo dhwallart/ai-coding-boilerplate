@@ -89,7 +89,7 @@ Call `ask_user_question` with these 3 questions:
 - No — we already have a logo
 - Not sure yet — skip for now
 
-### Step 4 — Fill specialization.md and brand.md
+### Step 4 — Fill specialization.md, brand.md and package.json
 
 Open `.docs/project/specialization.md` and replace all `<PLACEHOLDER>` values with the collected answers. Derive missing values from context. Do not write back any `<...>` placeholders.
 
@@ -99,6 +99,11 @@ Then open `.docs/project/brand.md` and fill all placeholders using the brand and
 - `<LOGO_STYLE>` — derive from visual style answer
 - `<SHAPE_LANGUAGE>` — derive from visual style answer
 - Leave remaining placeholders with a sensible derived default rather than leaving `<...>` syntax.
+
+Then update `package.json`:
+- Set `"name"` to the slugified project name (lowercase, spaces → hyphens, remove special chars)
+- Example: "My Cool App" → `"my-cool-app"`
+- Only update the `name` field, leave everything else unchanged.
 
 ### Step 5 — Validate & launch
 
