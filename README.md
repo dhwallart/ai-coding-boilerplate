@@ -15,11 +15,8 @@ Node.js (includes npm) — download at https://nodejs.org/en/download/
 ## What Gets Filled In (One Time)
 
 - `.docs/project/specialization.md` — your project description (the agent fills this)
+- `.docs/project/brand.md` — your visual/brand brief (the agent fills this)
 - `.features/` — feature specs live here (see `example.feature.md`)
-
-Optional, only if you want brand or design work:
-
-- `.docs/project/brand.md` — your visual/brand brief
 
 ## Design Assets (Optional)
 
