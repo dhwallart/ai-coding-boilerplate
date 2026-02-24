@@ -50,7 +50,6 @@ Use `AskUserQuestion` — do NOT ask questions one by one as text.
 | Design | `.docs/agent/design.md` |
 | AI workflow | `.docs/ai/workflow.md` |
 | Design workflow | `.docs/ai/design-workflow.md` |
-| First project | `.docs/ai/first-project-planning.md` |
 | Specialization | `.docs/project/specialization.md` |
 | Brand brief | `.docs/project/brand.md` |
 | Best practices | `.docs/ai/best-practices.md` |

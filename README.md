@@ -10,15 +10,7 @@ Node.js (includes npm) — download at https://nodejs.org/en/download/
 
 1. Tell the agent: `Start`
 2. Answer the questions.
-3. Run:
-
-```bash
-npm run ai:start
-```
-
-Open `http://localhost:3000`.
-
-> Prefer the terminal? Run `npm run ai:specify` instead of telling the agent `Start`.
+3. The agent sets everything up and opens your app automatically.
 
 ## What Gets Filled In (One Time)
 
