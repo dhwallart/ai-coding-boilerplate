@@ -100,12 +100,22 @@ Then open `.docs/project/brand.md` and fill all placeholders using the brand and
 - `<SHAPE_LANGUAGE>` — derive from visual style answer
 - Leave remaining placeholders with a sensible derived default rather than leaving `<...>` syntax.
 
-### Step 5 — Validate & finish
+### Step 5 — Validate & launch
 
 1. Run: `npm run ai:check-specialization`
 2. If successful: confirm to the user that the project is ready.
-3. Tell the user: **"Start your dev server with: `npm run ai:start`"**
-4. Ask: "What should the first feature of your app be?"
+3. Run `npm run dev` in the background.
+4. Wait ~3 seconds, then detect the actual port Next.js chose:
+   ```bash
+   ss -tlnp 2>/dev/null | grep -oP '(?<=:)\d+' | grep -E '^300[0-9]$' | head -1
+   ```
+   If that returns nothing, fall back to `3000`.
+5. Open the detected URL in the browser:
+   - Linux: `xdg-open http://localhost:<PORT>`
+   - macOS: `open http://localhost:<PORT>`
+   - Windows: `start http://localhost:<PORT>`
+6. Tell the user: **"Your app is running at http://localhost:PORT"** (use the actual port)
+7. Ask: "What should the first feature of your app be?"
 
 ## Critical rules
 - Never run destructive git commands without user confirmation.

@@ -102,9 +102,21 @@ Then open `.docs/project/brand.md` and fill all placeholders using the brand and
 
 ---
 
-### Step 5 — Validate & finish
+### Step 5 — Validate & launch
 
 1. Run: `npm run ai:check-specialization`
 2. If successful: inform the user that the project is set up.
-3. Tell the user: **"Start your dev server now with: `npm run ai:start`"**
-4. Then ask: "What should the first feature of your app be?" — to move directly into feature planning.
+3. Run `npm run dev` in the background (use Bash with `run_in_background: true`).
+4. Wait ~3 seconds, then detect the actual port Next.js chose:
+   ```bash
+   # Next.js auto-selects the next free port (3000, 3001, ...)
+   # Find it by checking which port the next.js process is listening on:
+   ss -tlnp 2>/dev/null | grep -oP '(?<=:)\d+' | grep -E '^300[0-9]$' | head -1
+   ```
+   If that returns nothing, fall back to `3000`.
+5. Open the detected URL in the browser:
+   - Linux: `xdg-open http://localhost:<PORT>`
+   - macOS: `open http://localhost:<PORT>`
+   - Windows: `start http://localhost:<PORT>`
+6. Tell the user: **"Your app is running at http://localhost:PORT"** (use the actual port)
+7. Then ask: "What should the first feature of your app be?" — to move directly into feature planning.
